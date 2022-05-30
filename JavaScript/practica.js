@@ -14,11 +14,11 @@ while(numA != "ESC"){
         alert(suma);
         numB=suma;
         numA=prompt("ingresa otro numero");
-        if(isNaN(numA)){
-            alert("Debes ingresar solo numeros, recarga la pagina para continuar");
+        if(numA==="ESC"){
             break;
         }
-        else if(numA=="ESC"){
+        else if(isNaN(numA)){
+            alert("Debes ingresar solo numeros, recarga la pagina para continuar");
             break;
         }
     }
