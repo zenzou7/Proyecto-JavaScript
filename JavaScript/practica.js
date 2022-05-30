@@ -18,5 +18,8 @@ while(numA != "ESC"){
             alert("Debes ingresar solo numeros, recarga la pagina para continuar");
             break;
         }
+        else if(numA=="ESC"){
+            break;
+        }
     }
 }                
