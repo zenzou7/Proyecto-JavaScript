@@ -8,30 +8,23 @@ let continuar;
 let costoTotal=0;
 
 let bebida;
-const bebida1 = {
-    nombre:"Fernet Branca",
-    costo:800,
-    cantidad:0,
-    total:0
-}
 
-const bebida2= {
-    nombre:"Monster",
-    costo:300,
-    cantidad:0,
-    total:0
+class Bebida{
+    constructor(nombre,costo,cantidad,total){
+        this.nombre = nombre
+        this.costo = costo
+        this.cantidad = cantidad
+        this.total = total
+    }
 }
-
-const bebida3={
-    nombre:"Vodka Absolute",
-    costo:1000,
-    cantidad:0,
-    total:0
-}
+ 
+const bebida1 = new Bebida("Fernet Branca", 800, 0, 0);
+const bebida2 = new Bebida("Monster", 300, 0, 0);
+const bebida3 = new Bebida("Vodka Absolute", 1000, 0, 0);
 
 function bebidas(beb){
     alert( beb.nombre+", precio de $"+beb.costo+", a continuacion elegi la cantidad en numeros");
-    recibo.push(beb.nombre);
+    recibo.push(beb);
 }
 
 function suma(n1,n2,n3){
@@ -39,17 +32,18 @@ function suma(n1,n2,n3){
 }
 
 let recibo = [];
-function mostrar(){
-    for(i=0 ; i<1 ; i++){
-        /* document.write(recibo[i]) */
-        document.write("Tu compra es de "+recibo.join("-")+" con un costo total de $"+costoTotal);
+function mostrarTotal(){
+    for (let i=0 ; i < recibo.length ; i++) {
+        let contenedor = document.createElement("div");
+        contenedor.innerHTML=`<h3>Tu producto ${recibo[i].nombre} x ${recibo[i].cantidad}= $${recibo[i].total}</h3>`
+        document.body.appendChild(contenedor);
     }
+    document.write(`<h2>El total de su compra es $${costoTotal}</h2>`)
 }
 
 function cantidad(beb){
-    beb.cantidad=prompt("Cantidad en numeros del producto");
+    beb.cantidad=prompt("Cantidad en numeros del producto");  
     beb.total= beb.cantidad*beb.costo;
-    alert("$"+beb.total);
 }
 
 function continuarCompra(){
@@ -57,7 +51,7 @@ function continuarCompra(){
 
     if(continuar.toLocaleLowerCase()=="no"){
         suma(bebida1.total,bebida2.total,bebida3.total);
-        mostrar();
+        mostrarTotal();
         compra=false;
     }
     else if(continuar.toLocaleLowerCase()!="si" && continuar.toLocaleLowerCase()!="no"){
