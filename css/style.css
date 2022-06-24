@@ -1,0 +1,19 @@
+/*FOOTER*/
+.footer {
+    display: flex;
+    background-color: #303030;
+    height: 80px;
+    width: 100%;
+    gap: 60px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2px;
+    overflow: hidden;
+  }
+  
+  .footer .footer_link, .footer .bi .bi-facebook, .footer .bi .bi-twitter, .footer .bi .bi-instagram {
+    width: 40px;
+    color: #dadada;
+  }
