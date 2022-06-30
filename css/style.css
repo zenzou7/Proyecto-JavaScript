@@ -1,3 +1,64 @@
+/* HEADER */
+.header{
+  width: 100%;
+  height: 100px;
+  background-color: #303030;
+  overflow: hidden;
+}
+.header__nav{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.header__logo{
+  width: 135px;
+}
+.header__titulo{
+  font-size: 30px;
+  color: #dadada;
+  padding-left: 100px;
+  margin: 0;
+}
+
+/* BODY */
+.titulo{
+  text-align: center;
+  font-size: 50px;
+  background-color: #dadada;
+  margin: 0;
+}
+
+#mostrarProductos{
+  width: 100%;
+  background-color: #dadada;
+  font-size: 25px;
+}
+#mostrarProductosAll{
+  width: 100%;
+  height: auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 50px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+.card{
+  grid-area: producto;
+  text-align: center;
+  justify-content: flex-end;
+  align-items: center;
+  width: 1fr;
+  padding-bottom: 5px ;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.card__img{
+  box-sizing: border-box;
+  width: 150px;
+}
+
 /*FOOTER*/
 .footer {
     display: flex;
