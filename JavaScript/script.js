@@ -110,7 +110,7 @@ mostrarBotones()
 }
 //verifico si existe el local storage
 
-if(localStorage){
+if(localStorage.length != 0){
 const bebidasLS = JSON.parse(localStorage.getItem("carrito"));
 
 
