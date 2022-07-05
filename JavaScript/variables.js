@@ -4,9 +4,9 @@ class Bebida{
     constructor(img,nombre,precio,cantidad,total){
         this.img= img
         this.nombre = nombre
-        this.precio = precio
-        this.cantidad = cantidad
-        this.total = total
+        this.precio = parseFloat(precio);
+        this.cantidad = parseFloat(cantidad)
+        this.total = parseFloat(total)
     }
 }
 
@@ -19,8 +19,8 @@ let bebidas= [bebida1,bebida2,bebida3];
 class BebidaLS {
     constructor(obj) {
         this.img = obj.img
-        this.nombre  = obj.nombre
-        this.precio  = parseFloat(obj.precio);
+        this.nombre = obj.nombre
+        this.precio = parseFloat(obj.precio);
         this.cantidad = parseFloat(obj.cantidad);
         this.total = parseFloat(obj.total);
     }

@@ -18,12 +18,15 @@ function mostrarProductos(){
         mostrarProductosAll.append(card)
 
         botonCompra.addEventListener("click", function(){
-            if(carrito.filter(bebida => bebida.cantidad >=1) == bebida){
-                bebida.cantidad= bebida.cantidad + 1;
+            let bebcant= (bebida.cantidad >=1)? true : false
+            if(bebcant){
+                divCarrito.innerHTML=``
+                bebida.cantidad++;
+                mostrarCarrito();
             }
             else{
                 carrito.push(bebida)
-                bebida.cantidad= bebida.cantidad + 1;
+                bebida.cantidad++;
                 divCarrito.innerHTML=``
                 mostrarCarrito(); 
             }
@@ -57,7 +60,8 @@ function mostrarCarrito(){
         carritoDiv.innerHTML += `
         <img class="card__img" src="${bebida.img}">
         <h3 class="card__nombre">${bebida.nombre}</h3>
-        <h3 class="card__precio">$${bebida.precio}</h3>`
+        <h3 class="card__cantidad">X${bebida.cantidad}</p>
+        <h3 class="card__precio">$${bebida.precio * bebida.cantidad}</h3>`
         let botonBorrar = document.createElement("button")
         botonBorrar.innerText = ("X")
         botonBorrar.setAttribute("data",bebida.nombre)
@@ -66,10 +70,19 @@ function mostrarCarrito(){
             
         botonBorrar.onclick = (e) =>{
             const bebidaNombre = e.target.getAttribute(`data`)
+            const bebcant= (bebida.cantidad <=1)? true : false
+            if(bebcant){
             carrito = carrito.filter(bebida => bebida.nombre !== bebidaNombre)
             divCarrito.innerHTML=``
-
+            bebida.cantidad--;
+            
             mostrarCarrito();
+            }
+            else{
+                divCarrito.innerHTML=``
+                bebida.cantidad--;
+                mostrarCarrito();
+            }
         }
     })
 
@@ -77,7 +90,7 @@ function mostrarCarrito(){
     function total(){
         let suma=0;
         carrito.forEach((bebida) => {
-            suma = suma + bebida.precio
+            suma = suma + bebida.precio * bebida.cantidad
         })
         return suma;
     }
@@ -110,12 +123,14 @@ mostrarBotones()
 }
 //verifico si existe el local storage
 
-if(localStorage.length != 0){
+if(localStorage.getItem("carrito")){
 const bebidasLS = JSON.parse(localStorage.getItem("carrito"));
 
-
-for (const objeto of bebidasLS){
-    carrito.push(new BebidaLS(objeto));
+for (const obj of bebidasLS){
+/*     const {img, nombre, precio, cantidad, total} = bebidasLS
+    
+    carrito.push(new Bebida(img, nombre, precio, cantidad, total)); */
+    carrito.push(new BebidaLS(obj));
 }
 mostrarCarrito()
 }
