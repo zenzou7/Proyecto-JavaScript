@@ -49,7 +49,6 @@ if(carrito.length = 0){
     carritoAlert.innerText = ("Aun no tienes productos en tu carro")
     divCarrito.append(carritoAlert)
 }
-
 else{
 function mostrarCarrito(){
     carritoAlert.remove()
@@ -99,27 +98,54 @@ function mostrarCarrito(){
     costoTotal.innerText =(`Costo total: $${total()}`)
     divCarrito.append(costoTotal)
 }
+
+//Botones 
 function mostrarBotones(){
+    const botones= document.getElementById("botones")
     
-        //Botones del storage
-        const botonGuardar = document.createElement("button")
-        botonGuardar.innerText = ("Guardar Carrito")
-        botonGuardar.setAttribute("id", "botonGuardar")
-        carritoLista.append(botonGuardar)
+    //Boton Guardar carrito
+    const botonGuardar = document.createElement("button")
+    botonGuardar.innerText = ("Guardar Carrito")
+    botonGuardar.setAttribute("id", "botonGuardar")
+    botones.append(botonGuardar)
 
-        botonGuardar.onclick = function guardarLS(){
-            localStorage.setItem("carrito", JSON.stringify(carrito))
-        }
+    botonGuardar.addEventListener("click", ()=>{
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    })
 
-        const botonBorrar = document.createElement("button")
-        botonBorrar.innerText = ("Borrar Carrito")
-        botonBorrar.setAttribute("id", "botonBorrar")
-        carritoLista.append(botonBorrar)
-        botonBorrar.addEventListener("click", function(){
-            localStorage.clear()
+    //Boton borrar carrito
+    const botonBorrar = document.createElement("button")
+    botonBorrar.innerText = ("Borrar Carrito")
+    botonBorrar.setAttribute("id", "botonBorrar")
+    botones.append(botonBorrar)
+    botonBorrar.addEventListener("click", function(){
+        localStorage.clear()
+        bebidas.forEach((bebida) => bebida.cantidad=0)
+        carrito.splice(0,carrito.length)
+        divCarrito.innerHTML=``
+    })
+
+    //Boton compra
+
+    const botonCompra = document.createElement("button")
+    botonCompra.innerText = ("Confirmar compra")
+    botonCompra.setAttribute("id", "botonCompra")
+    botones.append(botonCompra)
+
+    botonCompra.addEventListener("click", ()=>{
+        Swal.fire({
+            title: 'Muchas gracias por su compra!',
+            text: 'Tu pédido llegará algun día.',
+            icon: 'success',
+            confirmButtonText: 'Hecho'
         })
+
+        bebidas.forEach((bebida) => bebida.cantidad=0)
+        carrito.splice(0,carrito.length)
+        divCarrito.innerHTML = ``
+    })   
 }
-mostrarBotones()
+mostrarBotones();
 }
 //verifico si existe el local storage
 
@@ -132,7 +158,8 @@ for (const obj of bebidasLS){
     carrito.push(new Bebida(img, nombre, precio, cantidad, total)); */
     carrito.push(new BebidaLS(obj));
 }
-mostrarCarrito()
+mostrarCarrito();
 }
+
 
 
