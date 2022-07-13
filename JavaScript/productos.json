@@ -11,7 +11,7 @@
         "id":2,
         "nombre":"Monster",
         "precio":300,
-        "img":"./img/monster.png",
+        "img":"./img/monster.jpg",
         "cantidad":0,
         "total":0
     },

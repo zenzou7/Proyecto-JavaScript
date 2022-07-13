@@ -14,9 +14,10 @@ let mostrarProductosAll = document.getElementById("mostrarProductosAll");
 
 
 function mostrarProductos(){
-    fetch('./bebidas.json')
+    fetch('./JavaScript/productos.json')
         .then(resp => resp.json())
         .then(bebidas => {bebidas.forEach(bebida =>{
+            bebidas.push(bebida)
             let card = document.createElement("div")
             card.setAttribute("class", "card")
             card.innerHTML += `
