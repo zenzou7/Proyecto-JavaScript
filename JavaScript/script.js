@@ -1,3 +1,12 @@
+// Metodos HTTP
+
+// GET      Permite obtener Informacion en general,normalmente es el mas utilizado en una aplicacion web
+// POST     Enviar informacion hacia un servidoroservicio web,via HTTP como OBJETO/JSON
+// PUT      Actualizar un elemento via http enviando el objeto como parte de la actualizacion
+// PATCH    Actualizar un elemento via http especificando el campoaactualizar(Objeto)
+// DELETE   Eliminar un elemento via http
+     
+           
 //Mostrar productos
 
 let titulo = document.getElementById("titulo");
@@ -5,31 +14,34 @@ let mostrarProductosAll = document.getElementById("mostrarProductosAll");
 
 
 function mostrarProductos(){
-    bebidas.forEach((bebida)=>{
-        let card = document.createElement("div")
-        card.setAttribute("class", "card")
-        card.innerHTML += `
-        <img class="card__img" src="${bebida.img}">
-        <h3 class="card__nombre">${bebida.nombre}</h3>
-        <p class="card__precio">$${bebida.precio}</p>`
-        let botonCompra = document.createElement("button")
-        botonCompra.innerText = ("Agregar al carrito")
-        card.append(botonCompra)
-        mostrarProductosAll.append(card)
+    fetch('./bebidas.json')
+        .then(resp => resp.json())
+        .then(bebidas => {bebidas.forEach(bebida =>{
+            let card = document.createElement("div")
+            card.setAttribute("class", "card")
+            card.innerHTML += `
+            <img class="card__img" src="${bebida.img}">
+            <h3 class="card__nombre">${bebida.nombre}</h3>
+            <p class="card__precio">$${bebida.precio}</p>`
+            let botonCompra = document.createElement("button")
+            botonCompra.innerText = ("Agregar al carrito")
+            card.append(botonCompra)
+            mostrarProductosAll.append(card)
 
-        botonCompra.addEventListener("click", function(){
-            let bebcant= (bebida.cantidad >=1)? true : false
-            if(bebcant){
-                divCarrito.innerHTML=``
-                bebida.cantidad++;
-                mostrarCarrito();
-            }
-            else{
-                carrito.push(bebida)
-                bebida.cantidad++;
-                divCarrito.innerHTML=``
-                mostrarCarrito(); 
-            }
+            botonCompra.addEventListener("click", function(){
+                let bebcant= (bebida.cantidad >=1)? true : false
+                if(bebcant){
+                    divCarrito.innerHTML=``
+                    bebida.cantidad++;
+                    mostrarCarrito();
+                }
+                else{
+                    carrito.push(bebida)
+                    bebida.cantidad++;
+                    divCarrito.innerHTML=``
+                    mostrarCarrito(); 
+                }
+            })
         })
     })
 }
@@ -44,9 +56,9 @@ let divCarrito = document.getElementById("divCarrito")
 
 let carritoAlert = document.createElement("h2")
 carritoAlert.setAttribute("class", "alerta")
+carritoAlert.innerText = ("Aun no tienes productos en tu carro")
 
-if(carrito.length = 0){
-    carritoAlert.innerText = ("Aun no tienes productos en tu carro")
+if(!carrito){
     divCarrito.append(carritoAlert)
 }
 else{

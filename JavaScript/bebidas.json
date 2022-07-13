@@ -1,0 +1,26 @@
+[
+    {
+        "id":1,
+        "nombre": "Fernet Branca",
+        "precio": 800,
+        "img":"./img/fernet_branca.jpg",
+        "cantidad":0,
+        "total":0
+    },
+    {
+        "id":2,
+        "nombre":"Monster",
+        "precio":300,
+        "img":"./img/monster.png",
+        "cantidad":0,
+        "total":0
+    },
+    {
+        "id":3,
+        "nombre":"Vodka Absolut",
+        "precio":1000,
+        "img":"./img/vodka_absolut.jpg",
+        "cantidad":0,
+        "total":0
+    }
+]
