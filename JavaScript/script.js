@@ -152,7 +152,7 @@ function mostrarBotones(){
             icon: 'success',
             confirmButtonText: 'Hecho'
         })
-
+        localStorage.clear()
         bebidas.forEach((bebida) => bebida.cantidad=0)
         carrito.splice(0,carrito.length)
         divCarrito.innerHTML = ``
